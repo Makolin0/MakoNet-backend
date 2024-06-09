@@ -17,4 +17,9 @@ public class TestController {
     public ResponseEntity<String> sendText () {
         return ResponseEntity.ok("Tekst pobrany z back-endu");
     }
+
+    @GetMapping("/auth")
+    public ResponseEntity<String> checkAuth() {
+        return ResponseEntity.ok("Jesteś zalogowany!");
+    }
 }
