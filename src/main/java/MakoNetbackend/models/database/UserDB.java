@@ -25,14 +25,13 @@ import java.util.List;
 public class UserDB implements UserDetails {
 
     @Id
-    @GeneratedValue
-    @NotNull
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
     @Positive
     private long id;
 
     @Email
     private String username;
-    // email
 
     @NotNull
     private String password;
@@ -44,6 +43,12 @@ public class UserDB implements UserDetails {
     @NotNull
     private Role role;
 
+    @NotNull
+    private int lootboxes;
+
+    @OneToMany(mappedBy = "user")
+    private List<LootboxesDB> LootboxesList;
+
     private boolean isActive;
 
 
@@ -53,6 +58,7 @@ public class UserDB implements UserDetails {
         this.nickname = nickname;
         this.role = role;
         this.isActive = true;
+        this.lootboxes = 0;
     }
     public UserDB(String username, String password, String nickname, Role role, boolean isActive) {
         this.username = username;
@@ -60,6 +66,7 @@ public class UserDB implements UserDetails {
         this.nickname = nickname;
         this.role = role;
         this.isActive = isActive;
+        this.lootboxes = 0;
     }
 
     @Override

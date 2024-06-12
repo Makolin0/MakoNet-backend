@@ -22,7 +22,11 @@ public class AuthenticationService {
     private final UserRepository userRepository;
 
 
-    public AuthenticationResponse register(RegisterDTO request) {
+    public AuthenticationResponse register(RegisterDTO request) throws IllegalArgumentException{
+        if(repository.findByUsernameIgnoreCase(request.getEmail()).isPresent()){
+            throw new IllegalArgumentException();
+        }
+
         var user = UserDB.builder()
                 .nickname(request.getNickname())
                 .username(request.getEmail())
@@ -39,7 +43,7 @@ public class AuthenticationService {
     public AuthenticationResponse login(LoginDTO request) {
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword()));
         System.out.println("Zautentykowano!");
-        var user = repository.findByUsername(request.getEmail()).orElseThrow();
+        var user = repository.findByUsernameIgnoreCase(request.getEmail()).orElseThrow();
         System.out.println("Znaleziono uzytkownika:\n" + user);
         var jwtToken = jwtService.generateToken(user);
         System.out.println("wygenerowano token");
