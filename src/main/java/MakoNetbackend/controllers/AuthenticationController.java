@@ -23,13 +23,14 @@ public class AuthenticationController {
 
     @Operation(summary = "registration endpoint")
     @PostMapping("/register")
-    public ResponseEntity<String> register(@RequestBody RegisterDTO request) {
+    public ResponseEntity<AuthenticationResponse> register(@RequestBody RegisterDTO request) {
         return ResponseEntity.ok(service.register(request));
     }
 
     @Operation(summary = "login endpoint")
     @PostMapping("/login")
     public ResponseEntity<AuthenticationResponse> login(@RequestBody LoginDTO request) {
+        System.out.println("loguje uzytkownika: " + request.getEmail() + " , " + request.getPassword());
         return ResponseEntity.ok(service.login(request));
     }
 
