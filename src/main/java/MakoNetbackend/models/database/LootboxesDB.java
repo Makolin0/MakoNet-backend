@@ -22,9 +22,9 @@ public class LootboxesDB {
     @NotNull
     private Boolean received;
 
-    @Enumerated(EnumType.STRING)
+//    @Enumerated(EnumType.STRING)
     @NotNull
-    private Rewards reward;
+    private String reward;
 
     @Enumerated(EnumType.STRING)
     @NotNull

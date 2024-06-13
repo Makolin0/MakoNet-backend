@@ -1,6 +1,7 @@
 package MakoNetbackend.services;
 
 import MakoNetbackend.models.DTO.LootboxDTO;
+import MakoNetbackend.models.DTO.LootboxDrawDTO;
 import MakoNetbackend.models.DTO.LootboxesDTO;
 import MakoNetbackend.models.DTO.UserDTO;
 import MakoNetbackend.models.database.*;
@@ -33,11 +34,14 @@ public class UserService {
         var lootbox = LootboxesDB.builder()
                 .user(userDB)
                 .rarity(Rarity.LEGENDARY)
-                .reward(Rewards.OP)
+                .reward("OP")
                 .received(false)
                 .build();
         lootboxesRepository.save(lootbox);
         userDB.setLootboxes(userDB.getLootboxes() - 1);
+
+        LootboxDrawDTO lootboxDrawDTO = new LootboxDrawDTO();
+
         return new LootboxDTO(lootbox);
     }
 }

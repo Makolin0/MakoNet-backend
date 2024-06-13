@@ -13,7 +13,8 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class LootboxDTO {
-    private Rewards reward;
+    private String reward;
+    private int chance;
     private Rarity rarity;
     private boolean received;
 
