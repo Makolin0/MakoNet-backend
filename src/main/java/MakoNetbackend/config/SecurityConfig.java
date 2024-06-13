@@ -31,6 +31,7 @@ public class SecurityConfig {
 //                                .requestMatchers("/admin/**").hasAnyAuthority("ADMIN")
 //                                .anyRequest().authenticated()
                                 .requestMatchers("/test/auth").authenticated()
+                                .requestMatchers("/user/**").authenticated()
                                 .anyRequest().permitAll()
                 )
                 .sessionManagement(

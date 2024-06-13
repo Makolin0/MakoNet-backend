@@ -4,11 +4,7 @@ package MakoNetbackend.models.database;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.springframework.security.core.userdetails.UserDetails;
+import lombok.*;
 
 @Entity
 @Data
@@ -23,13 +19,20 @@ public class LootboxesDB {
     @Positive
     private long id;
 
+    @NotNull
+    private Boolean received;
 
     @Enumerated(EnumType.STRING)
     @NotNull
     private Rewards reward;
 
+    @Enumerated(EnumType.STRING)
+    @NotNull
+    private Rarity rarity;
+
     @NotNull
     @ManyToOne
     @JoinColumn(name = "userId", referencedColumnName = "id", nullable = false)
+    @ToString.Exclude
     private UserDB user;
 }
