@@ -45,6 +45,7 @@ public class UserService {
                 .build();
         lootboxesRepository.save(lootbox);
         userDB.setLootboxes(userDB.getLootboxes() - 1);
+        userRepository.save(userDB);
 
         return new LootboxDrawDTO(reward, filler);
     }
