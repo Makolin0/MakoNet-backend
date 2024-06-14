@@ -2,7 +2,6 @@ package MakoNetbackend.models.DTO;
 
 import MakoNetbackend.models.database.LootboxesDB;
 import MakoNetbackend.models.database.Rarity;
-import MakoNetbackend.models.database.Rewards;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,24 +13,21 @@ import java.time.LocalDateTime;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class LootboxDTO {
+public class LootboxAdminDTO {
+    private long id;
     private String reward;
-    private int chance;
     private Rarity rarity;
     private boolean received;
+    private String user;
     private LocalDateTime drawTime;
 
-    public LootboxDTO(LootboxesDB lootboxesDB){
+
+    public LootboxAdminDTO(LootboxesDB lootboxesDB){
+        this.id = lootboxesDB.getId();
         this.reward = lootboxesDB.getReward();
         this.rarity = lootboxesDB.getRarity();
         this.received = lootboxesDB.getReceived();
-    }
-
-    public LootboxDTO(String reward, int chance, Rarity rarity) {
-        this.reward = reward;
-        this.chance = chance;
-        this.rarity = rarity;
-        this.received = false;
-        this.drawTime = LocalDateTime.now();
+        this.user = lootboxesDB.getUser().getNickname();
+        this.drawTime = lootboxesDB.getDrawTime();
     }
 }

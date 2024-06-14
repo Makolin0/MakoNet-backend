@@ -15,10 +15,12 @@ public class UserDTO {
     private String username;
     private String nickname;
     private String role;
+    private long id;
 
     public UserDTO(UserDB userDB){
         this.username = userDB.getUsername();
         this.nickname = userDB.getNickname();
         this.role = String.valueOf(userDB.getRole());
+        this.id = userDB.getId();
     }
 }

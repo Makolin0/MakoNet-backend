@@ -6,9 +6,9 @@ import MakoNetbackend.services.LootboxService;
 
 public class Tests {
     public static void main(String[] args) {
-        LootboxService lootboxService = new LootboxService();
-        LootboxDTO lootboxDTO = lootboxService.draw();
-
-        System.out.println(lootboxDTO.getReward());
+//        LootboxService lootboxService = new LootboxService();
+//        LootboxAdminDTO lootboxDTO = lootboxService.draw();
+//
+//        System.out.println(lootboxDTO.getReward());
     }
 }

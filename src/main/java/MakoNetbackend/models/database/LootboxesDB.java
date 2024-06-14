@@ -6,6 +6,8 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import lombok.*;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Data
 @Builder
@@ -29,6 +31,9 @@ public class LootboxesDB {
     @Enumerated(EnumType.STRING)
     @NotNull
     private Rarity rarity;
+
+    @NotNull
+    private LocalDateTime drawTime;
 
     @NotNull
     @ManyToOne

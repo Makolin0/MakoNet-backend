@@ -1,5 +1,6 @@
 package MakoNetbackend.config;
 
+import MakoNetbackend.models.database.Role;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -32,13 +33,14 @@ public class SecurityConfig {
 //                                .anyRequest().authenticated()
                                 .requestMatchers("/test/auth").authenticated()
                                 .requestMatchers("/user/**").authenticated()
+                                .requestMatchers("/admin/**").hasAnyAuthority(Role.ADMIN.toString(), Role.GOD.toString())
                                 .anyRequest().permitAll()
                 )
                 .sessionManagement(
                         manager -> manager.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 )
                 .rememberMe(remember -> remember
-                        .tokenValiditySeconds(8640000)
+                        .tokenValiditySeconds(86400)
                         .key("jakisTekst")
                         .rememberMeParameter("remember"))
                 .authenticationProvider(authenticationProvider)
