@@ -10,11 +10,14 @@ import MakoNetbackend.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class UserService {
     private final UserRepository userRepository;
     private final LootboxesRepository lootboxesRepository;
+    private final LootboxService lootboxService;
 
     public UserDTO getUserInfo(String username) {
         UserDB userDB = userRepository.findByUsernameIgnoreCase(username).get();
@@ -26,22 +29,23 @@ public class UserService {
         return new LootboxesDTO(userDB);
     }
 
-    public LootboxDTO drawLootbox(String username) throws IllegalArgumentException{
+    public LootboxDrawDTO drawLootbox(String username) throws IllegalArgumentException{
         UserDB userDB = userRepository.findByUsernameIgnoreCase(username).get();
         if(userDB.getLootboxes() < 1){
             throw new IllegalArgumentException();
         }
+        LootboxDTO reward = lootboxService.draw();
+        List<LootboxDTO> filler = lootboxService.drawFiller();
+
         var lootbox = LootboxesDB.builder()
                 .user(userDB)
-                .rarity(Rarity.LEGENDARY)
-                .reward("OP")
+                .rarity(reward.getRarity())
+                .reward(reward.getReward())
                 .received(false)
                 .build();
         lootboxesRepository.save(lootbox);
         userDB.setLootboxes(userDB.getLootboxes() - 1);
 
-        LootboxDrawDTO lootboxDrawDTO = new LootboxDrawDTO();
-
-        return new LootboxDTO(lootbox);
+        return new LootboxDrawDTO(reward, filler);
     }
 }

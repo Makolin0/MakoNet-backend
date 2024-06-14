@@ -3,11 +3,15 @@ package MakoNetbackend.services;
 import MakoNetbackend.models.DTO.LootboxDTO;
 import MakoNetbackend.models.database.Rarity;
 import MakoNetbackend.models.database.Rewards;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@RequiredArgsConstructor
+@Service
 public class LootboxService {
 
     public LootboxDTO draw() {
@@ -39,5 +43,13 @@ public class LootboxService {
             }
         }
         return rewardList.get(rewardList.size()-1);
+    }
+
+    public List<LootboxDTO> drawFiller(){
+        List<LootboxDTO> filler = new ArrayList<>();
+        for(int i = 0; i < 200; i++){
+            filler.add(draw());
+        }
+        return filler;
     }
 }

@@ -38,7 +38,7 @@ public class SecurityConfig {
                         manager -> manager.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 )
                 .rememberMe(remember -> remember
-                        .tokenValiditySeconds(86400)
+                        .tokenValiditySeconds(8640000)
                         .key("jakisTekst")
                         .rememberMeParameter("remember"))
                 .authenticationProvider(authenticationProvider)

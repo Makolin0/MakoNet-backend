@@ -37,7 +37,7 @@ public class UserController {
 
     @Operation(summary = "Draw a lootbox")
     @PostMapping("/lootbox")
-    public ResponseEntity<LootboxDTO> postLootbox(@AuthenticationPrincipal UserDetails userDetails) {
+    public ResponseEntity<LootboxDrawDTO> postLootbox(@AuthenticationPrincipal UserDetails userDetails) {
         try {
             return ResponseEntity.ok(service.drawLootbox(userDetails.getUsername()));
         } catch (IllegalArgumentException e){
