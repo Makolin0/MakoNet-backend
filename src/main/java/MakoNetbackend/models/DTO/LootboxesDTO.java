@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -19,6 +20,7 @@ public class LootboxesDTO {
 
     public LootboxesDTO(UserDB user){
         this.available = user.getLootboxes();
-        this.openedList = user.getLootboxesList().stream().map(LootboxDTO::new).collect(Collectors.toList());
+        this.openedList = user.getLootboxesList().stream().map(LootboxDTO::new)
+                .sorted(Comparator.comparing(LootboxDTO::getDrawTime).reversed()).collect(Collectors.toList());
     }
 }

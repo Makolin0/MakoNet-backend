@@ -25,6 +25,7 @@ public class LootboxDTO {
         this.reward = lootboxesDB.getReward();
         this.rarity = lootboxesDB.getRarity();
         this.received = lootboxesDB.getReceived();
+        this.drawTime = lootboxesDB.getDrawTime();
     }
 
     public LootboxDTO(String reward, int chance, Rarity rarity) {

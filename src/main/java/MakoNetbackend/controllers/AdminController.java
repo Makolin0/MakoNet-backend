@@ -28,7 +28,7 @@ public class AdminController {
 
     @Operation(summary = "Get all users")
     @GetMapping("/users")
-    public ResponseEntity<List<UserDTO>> getUsers(@AuthenticationPrincipal UserDetails userDetails) {
+    public ResponseEntity<List<UserAdminDTO>> getUsers(@AuthenticationPrincipal UserDetails userDetails) {
         return ResponseEntity.ok(userService.getAll());
     }
     @Operation(summary = "Get all lootboxes")

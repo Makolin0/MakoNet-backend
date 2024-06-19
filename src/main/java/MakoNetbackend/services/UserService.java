@@ -19,7 +19,7 @@ public class UserService {
         return new UserDTO(userDB);
     }
 
-    public List<UserDTO> getAll() {
-        return userRepository.findAll().stream().map(UserDTO::new).toList();
+    public List<UserAdminDTO> getAll() {
+        return userRepository.findAll().stream().map(UserAdminDTO::new).toList();
     }
 }

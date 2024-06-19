@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -31,18 +32,18 @@ public class LootboxService {
         rewardList.add(new LootboxDTO("OP", 5, Rarity.LEGENDARY));
         rewardList.add(new LootboxDTO("Jajo smoka", 20, Rarity.LEGENDARY));
         rewardList.add(new LootboxDTO("bedrock", 30, Rarity.LEGENDARY));
-        rewardList.add(new LootboxDTO("2x netherite", 50, Rarity.LEGENDARY));
-        rewardList.add(new LootboxDTO("knockback 10 patyk", 50, Rarity.LEGENDARY));
-        rewardList.add(new LootboxDTO("netherite upgrade", 65, Rarity.LEGENDARY));
-        rewardList.add(new LootboxDTO("Glowa smoka", 70, Rarity.LEGENDARY));
-        rewardList.add(new LootboxDTO("shulker", 70, Rarity.LEGENDARY));
-        rewardList.add(new LootboxDTO("armor trim", 70, Rarity.LEGENDARY));
-        rewardList.add(new LootboxDTO("music disk", 70, Rarity.LEGENDARY));
-        rewardList.add(new LootboxDTO("enchant", 100, Rarity.LEGENDARY));
-        rewardList.add(new LootboxDTO("zelazo", 100, Rarity.LEGENDARY));
-        rewardList.add(new LootboxDTO("diament", 100, Rarity.LEGENDARY));
-        rewardList.add(new LootboxDTO("emerald", 100, Rarity.LEGENDARY));
-        rewardList.add(new LootboxDTO("blok wegla", 100, Rarity.LEGENDARY));
+        rewardList.add(new LootboxDTO("2x netherite", 50, Rarity.RARE));
+        rewardList.add(new LootboxDTO("knockback 10 patyk", 50, Rarity.RARE));
+        rewardList.add(new LootboxDTO("netherite upgrade", 65, Rarity.RARE));
+        rewardList.add(new LootboxDTO("Glowa smoka", 70, Rarity.UNCOMMON));
+        rewardList.add(new LootboxDTO("shulker", 70, Rarity.UNCOMMON));
+        rewardList.add(new LootboxDTO("armor trim", 70, Rarity.UNCOMMON));
+        rewardList.add(new LootboxDTO("music disk", 70, Rarity.UNCOMMON));
+        rewardList.add(new LootboxDTO("enchant", 100, Rarity.COMMON));
+        rewardList.add(new LootboxDTO("zelazo", 100, Rarity.COMMON));
+        rewardList.add(new LootboxDTO("diament", 100, Rarity.COMMON));
+        rewardList.add(new LootboxDTO("emerald", 100, Rarity.COMMON));
+        rewardList.add(new LootboxDTO("blok wegla", 100, Rarity.COMMON));
 
         int chanceSum = rewardList.stream().mapToInt(LootboxDTO::getChance).sum();
         int rand = (int)(Math.random() * chanceSum);
@@ -58,7 +59,7 @@ public class LootboxService {
     }
     public List<LootboxDTO> drawFiller(){
         List<LootboxDTO> filler = new ArrayList<>();
-        for(int i = 0; i < 200; i++){
+        for(int i = 0; i < 100; i++){
             filler.add(draw());
         }
         return filler;
@@ -93,7 +94,7 @@ public class LootboxService {
     }
 
     public List<LootboxAdminDTO> getAll(){
-        return lootboxesRepository.findAll().stream().map(LootboxAdminDTO::new).toList();
+        return lootboxesRepository.findAll().stream().map(LootboxAdminDTO::new).sorted(Comparator.comparing(LootboxAdminDTO::getDrawTime).reversed()).toList();
     }
 
     public String markAsReceived(long id){
