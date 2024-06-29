@@ -29,21 +29,44 @@ public class LootboxService {
 
     public LootboxDTO draw() {
         List<LootboxDTO> rewardList = new ArrayList<>();
-        rewardList.add(new LootboxDTO("OP", 5, Rarity.LEGENDARY));
-        rewardList.add(new LootboxDTO("Jajo smoka", 20, Rarity.LEGENDARY));
-        rewardList.add(new LootboxDTO("bedrock", 30, Rarity.LEGENDARY));
-        rewardList.add(new LootboxDTO("2x netherite", 50, Rarity.RARE));
-        rewardList.add(new LootboxDTO("knockback 10 patyk", 50, Rarity.RARE));
-        rewardList.add(new LootboxDTO("netherite upgrade", 65, Rarity.RARE));
-        rewardList.add(new LootboxDTO("Glowa smoka", 70, Rarity.UNCOMMON));
-        rewardList.add(new LootboxDTO("shulker", 70, Rarity.UNCOMMON));
-        rewardList.add(new LootboxDTO("armor trim", 70, Rarity.UNCOMMON));
-        rewardList.add(new LootboxDTO("music disk", 70, Rarity.UNCOMMON));
-        rewardList.add(new LootboxDTO("enchant", 100, Rarity.COMMON));
-        rewardList.add(new LootboxDTO("zelazo", 100, Rarity.COMMON));
-        rewardList.add(new LootboxDTO("diament", 100, Rarity.COMMON));
-        rewardList.add(new LootboxDTO("emerald", 100, Rarity.COMMON));
-        rewardList.add(new LootboxDTO("blok wegla", 100, Rarity.COMMON));
+        rewardList.add(new LootboxDTO("Nether Star", 10, Rarity.LEGENDARY));
+        rewardList.add(new LootboxDTO("Netherite Block", 20, Rarity.LEGENDARY));
+        rewardList.add(new LootboxDTO("Netherite x3", 20, Rarity.LEGENDARY));
+
+        rewardList.add(new LootboxDTO("Enchanted Golden Apple", 40, Rarity.RARE));
+        rewardList.add(new LootboxDTO("Shulker", 40, Rarity.RARE));
+        rewardList.add(new LootboxDTO("knockback 10 stick", 50, Rarity.RARE));
+        rewardList.add(new LootboxDTO("armor trim rzadki (do wyboru)", 50, Rarity.RARE));
+        rewardList.add(new LootboxDTO("netherite upgrade", 60, Rarity.RARE));
+        rewardList.add(new LootboxDTO("soul speed III", 70, Rarity.RARE));
+        rewardList.add(new LootboxDTO("swift sneak III", 70, Rarity.RARE));
+        rewardList.add(new LootboxDTO("Eye of ender x16", 70, Rarity.RARE));
+
+        rewardList.add(new LootboxDTO("trident", 80, Rarity.UNCOMMON));
+        rewardList.add(new LootboxDTO("music disk (do wyboru)", 110, Rarity.UNCOMMON));
+        rewardList.add(new LootboxDTO("armor trim zwyczajny (do wyboru)", 110, Rarity.UNCOMMON));
+        rewardList.add(new LootboxDTO("Armadillo spawn egg", 100, Rarity.UNCOMMON));
+        rewardList.add(new LootboxDTO("Allay spawn egg", 100, Rarity.UNCOMMON));
+        rewardList.add(new LootboxDTO("Panda spawn egg", 100, Rarity.UNCOMMON));
+        rewardList.add(new LootboxDTO("Mooshroom spawn egg", 100, Rarity.UNCOMMON));
+        rewardList.add(new LootboxDTO("Zombie horse spawn egg", 90, Rarity.UNCOMMON));
+        rewardList.add(new LootboxDTO("sniffer egg", 80, Rarity.UNCOMMON));
+        rewardList.add(new LootboxDTO("nautilus shell x4", 100, Rarity.UNCOMMON));
+
+        rewardList.add(new LootboxDTO("ominous bottle x5", 150, Rarity.COMMON));
+        rewardList.add(new LootboxDTO("name tag x3", 180, Rarity.COMMON));
+        rewardList.add(new LootboxDTO("heart of the sea", 150, Rarity.COMMON));
+        rewardList.add(new LootboxDTO("totem of undying", 150, Rarity.COMMON));
+        rewardList.add(new LootboxDTO("Saddle", 200, Rarity.COMMON));
+        rewardList.add(new LootboxDTO("Goat horn (do wyboru)", 150, Rarity.COMMON));
+        rewardList.add(new LootboxDTO("banner pattern (do wyboru)", 150, Rarity.COMMON));
+        rewardList.add(new LootboxDTO("Turtle shell", 200, Rarity.COMMON));
+        rewardList.add(new LootboxDTO("bundle", 200, Rarity.COMMON));
+        rewardList.add(new LootboxDTO("Piglin head", 150, Rarity.COMMON));
+        rewardList.add(new LootboxDTO("shulker shell", 200, Rarity.COMMON));
+        rewardList.add(new LootboxDTO("poisonous potato x16", 300, Rarity.COMMON));
+        rewardList.add(new LootboxDTO("golden carrot x64", 200, Rarity.COMMON));
+        rewardList.add(new LootboxDTO("pufferfish", 300, Rarity.COMMON));
 
         int chanceSum = rewardList.stream().mapToInt(LootboxDTO::getChance).sum();
         int rand = (int)(Math.random() * chanceSum);
